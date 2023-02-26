@@ -17,6 +17,7 @@ export default function App() {
 
   const [result, setResult] = useState(0);
 
+    // Function for radiobutton selection.
     function RadioSelection({label, value}){
       return(
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -26,12 +27,14 @@ export default function App() {
       );
     };
     
+    // Function for calculating alcohol levels.
     function calcAlc() {
       let litres = bottlesValue * 0.33;
       let grams = litres * 8 * 4.5;
       let burning = weight / 10;
       let gramsLeft = grams - burning * hoursValue;
 
+      // If radiobutton "Male" is activated.
       if (radiovalue === 'male') {
         let endResult = gramsLeft / (weight * 0.7);
         setResult(endResult.toFixed(2));
@@ -40,7 +43,7 @@ export default function App() {
           setResult(0);
         }
 
-      }
+      } // If radiobutton "Female" is activated.
       else {
         let endResult = gramsLeft / (weight * 0.6);
         setResult(endResult.toFixed(2));
@@ -50,6 +53,7 @@ export default function App() {
         }  
       }
 
+      // Error if the user has not typed any weight or the weight is 0.
       if (weight === 0) {
         alert('Please add weight.')
         setResult(0);
